@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Defend Point</title>
+    <style>
+        body {
+            background: linear-gradient(#0c2461, #1e3799);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+        }
+        h1 {
+            color: #4bcffa;
+            margin-bottom: 20px;
+        }
+        .menu {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        @media (max-width: 768px) {
+            .menu { grid-template-columns: 1fr; }
+        }
+        .btn {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 20px;
+            font-size: 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: rgba(75,207,250,0.3);
+        }
+        .result {
+            background: rgba(0,0,0,0.3);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border-left: 5px solid #4bcffa;
+            display: none;
+        }
+        .result h3 {
+            color: #4bcffa;
+            margin-bottom: 15px;
+        }
+        .telegram-link {
+            display: inline-block;
+            background: #0088cc;
+            color: white;
+            padding: 12px 25px;
+            margin-top: 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .telegram-link:hover {
+            background: #006699;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛡️ Defend Point</h1>
+        <p>Работаем честно — нет проблемы, с которой мы не сможем справиться.</p>
+        
+        <div class="menu">
+            <button class="btn" data-type="threat">Угрожают сливом информации</button>
+            <button class="btn" data-type="scam">Человек обманул меня</button>
+            <button class="btn" data-type="abuse">Меня обижает/травят</button>
+            <button class="btn" data-type="other">Другая проблема</button>
+        </div>
+        
+        <div id="result" class="result">
+            <!-- Сюда будет вставляться текст -->
+        </div>
+    </div>
+
+    <script>
+        // Все тексты заранее прописаны
+        const messages = {
+            threat: {
+                title: 'Анализ угроз слива информации',
+                text: 'Проведём оценку рисков, соберём доказательную базу и разработаем план действий.',
+                contact: '@defendpoint_official'
+            },
+            scam: {
+                title: 'Расследование мошенничества',
+                text: 'Идентифицируем злоумышленника, соберём информацию для дальнейших действий.',
+                contact: '@defendpoint_official'
+            },
+            abuse: {
+                title: 'Противодействие травле и оскорблениям',
+                text: 'Установим источник агрессии, подготовим материалы для защиты ваших прав.',
+                contact: '@defendpoint_official'
+            },
+            other: {
+                title: 'Индивидуальная консультация',
+                text: 'Опишите ситуацию — мы найдём оптимальное решение для вашего случая.',
+                contact: '@defendpoint_official'
+            }
+        };
+
+        // Обработка кликов
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function() {
+const type = this.getAttribute('data-type');
+                const msg = messages[type];
+                const resultDiv = document.getElementById('result');
+                
+                resultDiv.innerHTML = 
+                    <h3>${msg.title}</h3>
+                    <p>${msg.text}</p>
+                    <a href="https://t.me/defendpoint_official" class="telegram-link" target="_blank">
+                        📩 Написать в Telegram: ${msg.contact}
+                    </a>
+                    <p style="margin-top: 15px; opacity: 0.8;">
+                        Ответим в течение 15 минут. Первичный анализ — бесплатно.
+                    </p>
+                ;
+                
+                resultDiv.style.display = 'block';
+                resultDiv.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
